@@ -1,0 +1,10 @@
+{
+    "last_updated": "Sat, 09 Dec 2023 17:06:15 GMT",
+    "routes": [
+        {
+            "file_path": "views/login_screen/login_screen_view.dart",
+            "route_name": "login_screenViewRoute",
+            "view_name": "LoginScreenView"
+        }
+    ]
+}
