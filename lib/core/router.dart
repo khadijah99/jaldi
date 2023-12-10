@@ -10,6 +10,7 @@ class Router {
     switch (settings.name) {
       case loginScreenViewRoute:
         return MaterialPageRoute(builder: (_) => view0.LoginScreenView());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
