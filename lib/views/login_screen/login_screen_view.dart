@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jaldi/widgets/dumb_widgets/inkwell_text.dart';
 import 'package:jaldi/widgets/dumb_widgets/login_textfield.dart';
 import 'package:stacked/stacked.dart';
+import 'package:vrouter/vrouter.dart';
 import 'login_screen_view_model.dart';
 
 class LoginScreenView extends StatelessWidget {
@@ -91,7 +92,7 @@ class LoginScreenView extends StatelessWidget {
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(8),
                                             topLeft: Radius.circular(8))),
-                                    child: Padding(
+                                    child: const Padding(
                                       padding: EdgeInsets.all(20.0),
                                       child: Row(
                                         mainAxisAlignment:
@@ -161,7 +162,7 @@ class LoginScreenView extends StatelessWidget {
                                         const SizedBox(height: 25),
                                         ElevatedButton(
                                           onPressed: () {
-                                            // Implement login functionality
+                                            context.vRouter.to("/leads");
                                           },
                                           onHover: (value) {
                                             viewModel.toggleButtonColor(value);
@@ -200,8 +201,8 @@ class LoginScreenView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 20),
-                            InkWellText(
+                            const SizedBox(height: 20),
+                            const InkWellText(
                               text: 'Forgot Password?',
                             )
                           ],
