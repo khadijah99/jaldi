@@ -12,6 +12,8 @@ import 'leads_screen_view_model.dart';
 import 'package:flutter_side_menu/flutter_side_menu.dart';
 
 class LeadsScreenView extends StatelessWidget {
+  const LeadsScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LeadsScreenViewModel>.reactive(
@@ -45,9 +47,9 @@ class LeadsScreenView extends StatelessWidget {
                                 .logout();
                             context.vRouter.to("/login");
                           },
-                          icon: Icon(Icons.logout),
+                          icon: const Icon(Icons.logout),
                           label: viewModel.mode == SideMenuMode.open
-                              ? Text("Logout")
+                              ? const Text("Logout")
                               : Container()),
                     ],
                   ),
@@ -81,7 +83,7 @@ class LeadsScreenView extends StatelessWidget {
                         },
                         icon: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xffE4DFDA),
+                              color: const Color(0xffE4DFDA),
                               borderRadius: BorderRadius.circular(4)),
                           child: Row(
                             mainAxisAlignment: viewModel.rowAllignment,
@@ -133,10 +135,10 @@ class LeadsScreenView extends StatelessWidget {
                                 )
                               ]),
                           Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
-                                    const BorderRadius.all(Radius.circular(8))),
+                                    BorderRadius.all(Radius.circular(8))),
                             child: Column(
                               children: [
                                 Container(
@@ -167,7 +169,7 @@ class LeadsScreenView extends StatelessWidget {
                                             obscureText: false,
                                             hintText: 'Search',
                                             suffixIcon: IconButton(
-                                              icon: Icon(Icons.search),
+                                              icon: const Icon(Icons.search),
                                               onPressed: () {},
                                             ),
                                           ),
@@ -235,7 +237,7 @@ class LeadsScreenView extends StatelessWidget {
                                       ]));
                                     }
 
-                                    final CustomDataSource _dataSource =
+                                    final CustomDataSource dataSource =
                                         CustomDataSource(dataRows);
 
                                     return Theme(
@@ -372,7 +374,7 @@ class LeadsScreenView extends StatelessWidget {
                                             },
                                           ),
                                         ],
-                                        source: _dataSource,
+                                        source: dataSource,
                                         rowsPerPage:
                                             10, // Number of rows per page
                                       ),

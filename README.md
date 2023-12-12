@@ -1,16 +1,57 @@
-# jaldi
+# Jaldi Project
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+This project aims to provide a comprehensive solution for managing leads efficiently. It includes features for user authentication, lead management, and more.
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+![Screenshot 1](screenshots/screenshot1.png)
+_Caption for Screenshot 1_
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Screenshot 2](screenshots/screenshot2.png)
+_Caption for Screenshot 2_
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<!-- Add more screenshots if needed -->
+
+## Packages Used
+
+- `package_name_1`: Description of package usage.
+- `package_name_2`: Description of package usage.
+- `package_name_3`: Description of package usage.
+<!-- List all the packages you've used -->
+
+## Features
+
+- Feature 1: Description of feature 1.
+- Feature 2: Description of feature 2.
+<!-- List the main features of your project -->
+
+## Installation
+
+1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+2. Change directory to project folder: `cd your-project-folder`
+3. Install dependencies: `flutter pub get`
+
+## Usage
+
+1. Run the application: `flutter run`
+2. Use the app following the on-screen instructions.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature`
+3. Make your changes and commit: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature`
+5. Submit a pull request.
+
+## Credits
+
+Author: Your Name
+
+<!-- Give credit to anyone whose code or work you've used -->
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

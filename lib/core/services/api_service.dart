@@ -12,15 +12,17 @@ import 'package:jaldi/core/typedefs.dart';
 class JaldiApiService {
   final Dio dio;
 
+  // Constructor for JaldiApiService, requiring an instance of Dio
   JaldiApiService({required this.dio});
 
+  // Method for user login
   Future<Result<AuthenticatedUser, ErrorResponse>> login<R>({
-    bool isMock = false,
-    required String endpoint,
-    JSON? data,
-    Options? options,
-    CancelToken? cancelToken,
-    JSON? queryParameters,
+    bool isMock = false, // Flag to simulate/mock API response
+    required String endpoint, // API endpoint for login
+    JSON? data, // Data to be sent in the request body
+    Options? options, // Options for the HTTP request
+    CancelToken? cancelToken, // Token for cancelling the request
+    JSON? queryParameters, // Query parameters for the request
   }) async {
     try {
       final response = await dio.post<JSON>(
@@ -35,28 +37,29 @@ class JaldiApiService {
     }
   }
 
+  // Method to fetch leads
   Future<Leads> getLeads<R>({
-    bool isMock = false,
-    required String endpoint,
-    int pageNo = 1,
-    JSON? data,
-    Options? options,
-    CancelToken? cancelToken,
-    JSON? queryParameters,
+    bool isMock = false, // Flag to determine if mock data should be used
+    required String endpoint, // API endpoint for fetching leads
+    int pageNo = 1, // Page number for pagination
+    JSON? data, // Data to be sent in the request body
+    Options? options, // Options for the HTTP request
+    CancelToken? cancelToken, // Token for cancelling the request
+    JSON? queryParameters, // Query parameters for the request
   }) async {
     if (isMock) {
+      // Load and parse mock JSON data if isMock is true
       String jsonString = await rootBundle.loadString(AppAssets.mockData);
-      // Parse JSON
       Map<String, dynamic> jsonData = json.decode(jsonString);
-
       Leads data = Leads.fromJson(jsonData);
-
       return data;
     } else {
+      // Throw DioException if not using mock data
       throw DioException(requestOptions: RequestOptions());
     }
   }
 
+  // Method to get a subset of paginated leads
   List<InnerLeadData>? _getPaginatedLeads(
       List<InnerLeadData>? allLeads, int pageNo, int perPage) {
     int startIndex = (pageNo - 1) * perPage;

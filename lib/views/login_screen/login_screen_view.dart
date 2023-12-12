@@ -8,6 +8,8 @@ import 'package:stacked/stacked.dart';
 import 'login_screen_view_model.dart';
 
 class LoginScreenView extends StatelessWidget {
+  const LoginScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<LoginScreenViewModel>.reactive(
@@ -15,6 +17,7 @@ class LoginScreenView extends StatelessWidget {
           (BuildContext context, LoginScreenViewModel viewModel, Widget? _) {
         return Scaffold(
           body: Container(
+              //Setting the background here.
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(AppAssets.loginBG),
@@ -25,6 +28,7 @@ class LoginScreenView extends StatelessWidget {
                 padding: const EdgeInsets.all(70.0),
                 child: Row(
                   children: [
+                    /////////////////Left container START//////////////
                     Container(
                       height: MediaQuery.of(context).size.height,
                       width: 448,
@@ -66,6 +70,8 @@ class LoginScreenView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    /////////////////Left container END///////////////////////////////
+                    /////////////////Right container (Login Frame) START//////////////
                     Expanded(
                       flex: 2,
                       child: Center(
@@ -77,7 +83,8 @@ class LoginScreenView extends StatelessWidget {
                                   viewModel.errorMessage == null ? 384 : 400,
                               width: 416,
                               decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xFFE8E3FB)),
+                                  border: Border.all(
+                                      color: const Color(0xFFE8E3FB)),
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(8)),
                               child: Column(
@@ -87,9 +94,9 @@ class LoginScreenView extends StatelessWidget {
                                     height: 96,
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color(0xFFE8E3FB)),
-                                        color: Color(0xFFFBFCFF),
-                                        borderRadius: BorderRadius.only(
+                                            color: const Color(0xFFE8E3FB)),
+                                        color: const Color(0xFFFBFCFF),
+                                        borderRadius: const BorderRadius.only(
                                             topRight: Radius.circular(8),
                                             topLeft: Radius.circular(8))),
                                     child: const Padding(
@@ -150,10 +157,11 @@ class LoginScreenView extends StatelessWidget {
                                               viewModel.passwordController,
                                           obscureText: viewModel.obscureText,
                                           suffixIcon: IconButton(
-                                            color: Color(0xFF244494),
+                                            color: const Color(0xFF244494),
                                             icon: viewModel.obscureText
-                                                ? Icon(Icons.visibility)
-                                                : Icon(Icons.visibility_off),
+                                                ? const Icon(Icons.visibility)
+                                                : const Icon(
+                                                    Icons.visibility_off),
                                             onPressed: () {
                                               viewModel.toggleObscureText();
                                             },
@@ -162,7 +170,7 @@ class LoginScreenView extends StatelessWidget {
                                         viewModel.errorMessage != null
                                             ? Text(
                                                 viewModel.errorMessage!,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.red),
                                               )
                                             : Container(),
@@ -224,6 +232,7 @@ class LoginScreenView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    /////////////////Right container (Login Frame) END//////////////
                   ],
                 ),
               )),

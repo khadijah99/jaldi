@@ -34,8 +34,9 @@ class MyApp extends StatelessWidget {
             routes: [
               VGuard(
                 beforeEnter: (vRedirector) async {
-                  final isLoggedIn = true;
-                  Provider.of<AuthenticationProvider>(context, listen: false)
+                  final isLoggedIn = Provider.of<AuthenticationProvider>(
+                              context,
+                              listen: false)
                           .user !=
                       null;
                   print(isLoggedIn);
@@ -69,12 +70,6 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.grey,
             ));
       }),
-      // MaterialApp(
-      //   navigatorKey: locator<NavigationService>().navigatorKey,
-      //   onGenerateRoute: router.Router.generateRoute,
-      //   debugShowCheckedModeBanner: false,
-      //   initialRoute: leadsScreenViewRoute,
-      // ),
     );
   }
 }
