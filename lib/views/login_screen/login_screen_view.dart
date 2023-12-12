@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jaldi/core/constants/app_assets.dart';
+import 'package:jaldi/core/providers/authentication_provider.dart';
 import 'package:jaldi/widgets/dumb_widgets/inkwell_text.dart';
 import 'package:jaldi/widgets/dumb_widgets/login_textfield.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
-import 'package:vrouter/vrouter.dart';
 import 'login_screen_view_model.dart';
 
 class LoginScreenView extends StatelessWidget {
@@ -15,7 +17,7 @@ class LoginScreenView extends StatelessWidget {
           body: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/BG-login.png'),
+                  image: AssetImage(AppAssets.loginBG),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -38,8 +40,7 @@ class LoginScreenView extends StatelessWidget {
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Image.asset(
-                                      'assets/images/jaldi-logo-yellow.png'),
+                                  Image.asset(AppAssets.jaldiYellowLogo),
                                   const SizedBox(
                                     height: 20,
                                   ),
@@ -56,8 +57,7 @@ class LoginScreenView extends StatelessWidget {
                                 ]),
                             Center(
                                 child: Image.asset(
-                              'assets/images/jaldi-big.png',
-                              //height: MediaQuery.of(context).size.height,
+                              AppAssets.jaldiBigLogo,
                             )),
                             const Text("© 2022 Jaldi.",
                                 style:
@@ -68,13 +68,13 @@ class LoginScreenView extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 2,
-                      // Adjust the flex as needed
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              height: 384,
+                              height:
+                                  viewModel.errorMessage == null ? 384 : 400,
                               width: 416,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Color(0xFFE8E3FB)),
@@ -159,10 +159,18 @@ class LoginScreenView extends StatelessWidget {
                                             },
                                           ),
                                         ),
+                                        viewModel.errorMessage != null
+                                            ? Text(
+                                                viewModel.errorMessage!,
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              )
+                                            : Container(),
                                         const SizedBox(height: 25),
                                         ElevatedButton(
                                           onPressed: () {
-                                            context.vRouter.to("/leads");
+                                            viewModel.login(context);
+                                            //  context.vRouter.to("/leads");
                                           },
                                           onHover: (value) {
                                             viewModel.toggleButtonColor(value);
@@ -187,13 +195,20 @@ class LoginScreenView extends StatelessWidget {
                                                   fontSize: 20,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold)),
-                                          child: Text(
-                                            'Login',
-                                            style: TextStyle(
-                                                color: viewModel
-                                                    .loginButtonTextColor,
-                                                fontSize: 16),
-                                          ),
+                                          child:
+                                              Consumer<AuthenticationProvider>(
+                                                  builder:
+                                                      (context, value, child) {
+                                            return value.isLoading
+                                                ? const CircularProgressIndicator()
+                                                : Text(
+                                                    'Login',
+                                                    style: TextStyle(
+                                                        color: viewModel
+                                                            .loginButtonTextColor,
+                                                        fontSize: 16),
+                                                  );
+                                          }),
                                         ),
                                       ],
                                     ),
@@ -214,7 +229,7 @@ class LoginScreenView extends StatelessWidget {
               )),
         );
       },
-      viewModelBuilder: () => LoginScreenViewModel(),
+      viewModelBuilder: () => LoginScreenViewModel(context),
     );
   }
 }
